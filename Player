@@ -1,0 +1,1930 @@
+//
+//  Player.m
+//  Tutorial1
+//
+//  Created by Michael Daley on 14/06/2009.
+//  Copyright 2009 Michael Daley. All rights reserved.
+//
+
+#import "GameController.h"
+#import "SoundManager.h"
+#import "Player.h"
+#import "Ghost.h"
+#import "Witch.h"
+#import "Vampire.h"
+#import "Bat.h"
+#import "Pumpkin.h"
+#import "Frank.h"
+#import "Zombie.h"
+#import "GameScene.h"
+#import "Image.h"
+#import "SpriteSheet.h"
+#import "Animation.h"
+#import "Primitives.h"
+#import "BitmapFont.h"
+#import "PackedSpriteSheet.h"
+#import "AbstractObject.h"
+#import "MapObject.h"
+#import "EnergyObject.h"
+#import "ParticleEmitter.h"
+#import "EnemyShuriken.h"
+
+
+#pragma mark -
+#pragma mark Private implementation
+
+@interface Player (Private)
+// Updates the players location with the given delta
+- (void)updateLocationWithDelta:(float)aDelta;
+
+// Checks to see if the supplied object is part of the parchment
+- (void)checkForParchment:(AbstractObject*)aObject pickup:(BOOL)aPickup;
+@end
+
+#pragma mark -
+#pragma mark Public implementation
+
+@implementation Player
+@synthesize abilityTimer1;
+@synthesize abilityTimer2;
+@synthesize abilityTimer3;
+@synthesize abilityTimer4;
+@synthesize target;
+@synthesize maxEnergy;
+@synthesize maxMagic;
+@synthesize magic;
+@synthesize level;
+@synthesize experience;
+@synthesize toNextLevel;
+@synthesize attack;
+@synthesize strength;
+@synthesize agility;
+@synthesize vitality;
+@synthesize defense;
+@synthesize dexterity;
+@synthesize intelligence;
+@synthesize mind;
+@synthesize luck;
+@synthesize angleOfMovement;
+@synthesize speedOfMovement;
+@synthesize lives;
+@synthesize beamLocation;
+@synthesize inventory1;
+@synthesize inventory2;
+@synthesize inventory3;
+@synthesize hasParchmentTop;
+@synthesize hasParchmentMiddle;
+@synthesize hasParchmentBottom;
+@synthesize inBattle;
+
+
+
+- (void)dealloc {
+    [rightBlood release];
+    [leftBlood release];
+ //   [overlay release];
+    [smoke release];
+    [winning release];
+    [migawariAnimation release];
+    [leftAnimation release];
+    [rightAnimation release];
+    [downAnimation release];
+    [upAnimation release];
+    [leftAttackAnimation release];
+    [rightAttackAnimation release];
+    [upAttackAnimation release];
+    [downAttackAnimation release];
+    [rightRangedAttackAnimation release];
+    [leftRangedAttackAnimation release];
+    [upRangedAttackAnimation release];
+    [downRangedAttackAnimation release];
+    [rightCastingAnimation release];
+    [leftCastingAnimation release];
+    [upCastingAnimation release];
+    [downCastingAnimation release];
+    [rightBattleIdleAnimation release];
+    [leftBattleIdleAnimation release];
+    [damageAnimation release];
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark Init
+
+- (id)initWithTileLocation:(CGPoint)aLocation {
+    self = [super init];
+	if (self != nil) {
+		
+		// The players position is held in terms of tiles on the map
+        tileLocation.x = aLocation.x;
+        tileLocation.y = aLocation.y;
+		
+		// Set up the initial pixel position based on the players tile position
+		pixelLocation = tileMapPositionToPixelPosition(tileLocation);
+		
+		dyingEmitter = [[ParticleEmitter alloc] initParticleEmitterWithFile:@"dyingGhostEmitter.pex"];
+        smoke = [[ParticleEmitter alloc] initParticleEmitterWithFile:@"smoke.pex"];
+  //      leftBlood = [[ParticleEmitter alloc] initParticleEmitterWithFile:@"ice.pex"];
+  //      rightBlood = [[ParticleEmitter alloc] initParticleEmitterWithFile:@"ice.pex"];
+        // Set up the spritesheets that will give us out player animation
+        //new zel
+       		PackedSpriteSheet *test = [PackedSpriteSheet packedSpriteSheetForImageNamed:@"ZACharacterSprites2.png" controlFile:@"ZACharacterSprites2" imageFilter:GL_NEAREST];
+
+  //old zel
+    
+    
+        // Set up the animations for our player for different directions
+        winning = [[Animation alloc] init];
+        leftAnimation = [[Animation alloc] init];
+        rightAnimation = [[Animation alloc] init];
+        downAnimation = [[Animation alloc] init];
+		upAnimation = [[Animation alloc] init];
+        leftAttackAnimation = [[Animation alloc] init];
+        rightAttackAnimation = [[Animation alloc] init];
+        upAttackAnimation = [[Animation alloc] init];
+        downAttackAnimation = [[Animation alloc] init];
+        rightRangedAttackAnimation = [[Animation alloc] init];
+        leftRangedAttackAnimation = [[Animation alloc] init];
+        upRangedAttackAnimation = [[Animation alloc] init];
+        downRangedAttackAnimation = [[Animation alloc] init];
+        rightCastingAnimation = [[Animation alloc] init];
+        leftCastingAnimation = [[Animation alloc] init];
+        upCastingAnimation = [[Animation alloc] init];
+        downCastingAnimation = [[Animation alloc] init];
+        leftBattleIdleAnimation = [[Animation alloc] init];
+        rightBattleIdleAnimation = [[Animation alloc] init];
+        migawariAnimation = [[Animation alloc]init];
+        // Overlay for effects
+//        overlay = [[Image alloc] initWithImageNamed:@"overlay.png" filter:GL_LINEAR];
+//        overlay.color = Color4fMake(1, .2, .2, 1);		// Delay to be used between frames in the players animation
+        float animationDelay = 0.15f;
+        
+        // NEW ZEL
+        // Right animation  //start with mid run > run 1 > mid run > run 3 > standing
+		[rightAnimation addFrameWithImage:[test imageForKey:@"runningRight1.png"] delay:animationDelay];
+		[rightAnimation addFrameWithImage:[test imageForKey:@"runningRight2.png"] delay:animationDelay];
+		[rightAnimation addFrameWithImage:[test imageForKey:@"runningRight1.png"] delay:animationDelay];
+		[rightAnimation addFrameWithImage:[test imageForKey:@"runningRight2.png"] delay:animationDelay];
+		[rightAnimation addFrameWithImage:[test imageForKey:@"standRight.png"] delay:animationDelay];
+		rightAnimation.type = kAnimationType_Repeating;
+		rightAnimation.state = kAnimationState_Running;
+		rightAnimation.bounceFrame = 4;
+        
+        // Left animation
+		[leftAnimation addFrameWithImage:[test imageForKey:@"runningLeft1.png"] delay:animationDelay];
+		[leftAnimation addFrameWithImage:[test imageForKey:@"runningLeft2.png"] delay:animationDelay];
+		[leftAnimation addFrameWithImage:[test imageForKey:@"runningLeft3.png"] delay:animationDelay];
+		[leftAnimation addFrameWithImage:[test imageForKey:@"runningLeft2.png"] delay:animationDelay];
+		[leftAnimation addFrameWithImage:[test imageForKey:@"standLeft.png"] delay:animationDelay];
+		leftAnimation.type = kAnimationType_Repeating;
+		leftAnimation.state = kAnimationState_Running;
+		leftAnimation.bounceFrame = 4;
+        
+        // Down animation
+		[downAnimation addFrameWithImage:[test imageForKey:@"runningDown1.png"] delay:animationDelay];
+		[downAnimation addFrameWithImage:[test imageForKey:@"runningDown2.png"] delay:animationDelay];
+		[downAnimation addFrameWithImage:[test imageForKey:@"runningDown1.png"] delay:animationDelay];
+		[downAnimation addFrameWithImage:[test imageForKey:@"runningDown2.png"] delay:animationDelay];
+		[downAnimation addFrameWithImage:[test imageForKey:@"standDown.png"] delay:animationDelay];
+		downAnimation.type = kAnimationType_Repeating;
+		downAnimation.state = kAnimationState_Running;
+		downAnimation.bounceFrame = 4;
+        
+        // Up animation
+		[upAnimation addFrameWithImage:[test imageForKey:@"runningUp1.png"] delay:animationDelay];
+		[upAnimation addFrameWithImage:[test imageForKey:@"runningUp2.png"] delay:animationDelay];
+		[upAnimation addFrameWithImage:[test imageForKey:@"runningUp1.png"] delay:animationDelay];
+		[upAnimation addFrameWithImage:[test imageForKey:@"runningUp2.png"] delay:animationDelay];
+		[upAnimation addFrameWithImage:[test imageForKey:@"standUp.png"] delay:animationDelay];
+		upAnimation.type = kAnimationType_Repeating;
+		upAnimation.state = kAnimationState_Running;//not 9 0 9 1 2
+		upAnimation.bounceFrame = 4;                //not 9 9 0 2
+
+        // Right attack animation
+        [rightAttackAnimation addFrameWithImage:[test imageForKey:@"attackingRight1.png"] delay:animationDelay];
+		[rightAttackAnimation addFrameWithImage:[test imageForKey:@"attackingRight2.png"] delay:animationDelay];
+		[rightAttackAnimation addFrameWithImage:[test imageForKey:@"attackingRight3.png"] delay:animationDelay];
+		[rightAttackAnimation addFrameWithImage:[test imageForKey:@"attackingRight4.png"] delay:animationDelay];
+
+		rightAttackAnimation.type = kAnimationType_Repeating;
+		rightAttackAnimation.state = kAnimationState_Running;
+		rightAttackAnimation.bounceFrame = 4;
+        
+        // Left attack animation
+        [leftAttackAnimation addFrameWithImage:[test imageForKey:@"attackingLeft1.png"] delay:animationDelay];
+		[leftAttackAnimation addFrameWithImage:[test imageForKey:@"attackingLeft2.png"] delay:animationDelay];
+		[leftAttackAnimation addFrameWithImage:[test imageForKey:@"attackingLeft3.png"] delay:animationDelay];
+		[leftAttackAnimation addFrameWithImage:[test imageForKey:@"attackingLeft4.png"] delay:animationDelay];
+        
+		leftAttackAnimation.type = kAnimationType_Repeating;
+		leftAttackAnimation.state = kAnimationState_Running;
+		leftAttackAnimation.bounceFrame = 4;
+     
+        // Up attack animation
+        [upAttackAnimation addFrameWithImage:[test imageForKey:@"attackingUp1.png"] delay:animationDelay];
+		[upAttackAnimation addFrameWithImage:[test imageForKey:@"attackingUp2.png"] delay:animationDelay];
+		[upAttackAnimation addFrameWithImage:[test imageForKey:@"attackingUp3.png"] delay:animationDelay];
+		[upAttackAnimation addFrameWithImage:[test imageForKey:@"attackingUp4.png"] delay:animationDelay];
+        
+		upAttackAnimation.type = kAnimationType_Repeating;
+		upAttackAnimation.state = kAnimationState_Running;
+		upAttackAnimation.bounceFrame = 4;
+        
+        // Down attack animation
+        [downAttackAnimation addFrameWithImage:[test imageForKey:@"attackingDown1.png"] delay:animationDelay];
+		[downAttackAnimation addFrameWithImage:[test imageForKey:@"attackingDown2.png"] delay:animationDelay];
+		[downAttackAnimation addFrameWithImage:[test imageForKey:@"attackingDown3.png"] delay:animationDelay];
+		[downAttackAnimation addFrameWithImage:[test imageForKey:@"attackingDown4.png"] delay:animationDelay];
+        
+		downAttackAnimation.type = kAnimationType_Repeating;
+		downAttackAnimation.state = kAnimationState_Running;
+		downAttackAnimation.bounceFrame = 4;
+        
+        // Right ranged attack animation
+        [rightRangedAttackAnimation addFrameWithImage:[test imageForKey:@"throwingRight.png"] delay:animationDelay];
+      
+		rightRangedAttackAnimation.type = kAnimationType_Repeating;
+		rightRangedAttackAnimation.state = kAnimationState_Running;
+		rightRangedAttackAnimation.bounceFrame = 1;
+        
+        // Left ranged attack animation
+        [leftRangedAttackAnimation addFrameWithImage:[test imageForKey:@"throwingLeft.png"] delay:animationDelay];
+   
+		leftRangedAttackAnimation.type = kAnimationType_Repeating;
+		leftRangedAttackAnimation.state = kAnimationState_Running;
+		leftRangedAttackAnimation.bounceFrame = 1;
+        
+        // Up ranged attack animation
+        [upRangedAttackAnimation addFrameWithImage:[test imageForKey:@"throwingUp.png"] delay:animationDelay];
+      
+		upRangedAttackAnimation.type = kAnimationType_Repeating;
+		upRangedAttackAnimation.state = kAnimationState_Running;
+		upRangedAttackAnimation.bounceFrame = 1;
+        
+        // Down ranged attack animation
+        [downRangedAttackAnimation addFrameWithImage:[test imageForKey:@"throwingDown.png"] delay:animationDelay];
+    
+		downRangedAttackAnimation.type = kAnimationType_Repeating;
+		downRangedAttackAnimation.state = kAnimationState_Running;
+		downRangedAttackAnimation.bounceFrame = 1;
+        
+        // Right casting animation
+        [rightCastingAnimation addFrameWithImage:[test imageForKey:@"castingRight.png"] delay:animationDelay];
+        
+		rightCastingAnimation.type = kAnimationType_Repeating;
+		rightCastingAnimation.state = kAnimationState_Running;
+		rightCastingAnimation.bounceFrame = 1;
+        
+        // Left casting animation
+        [leftCastingAnimation addFrameWithImage:[test imageForKey:@"castingLeft.png"] delay:animationDelay];
+        
+		leftCastingAnimation.type = kAnimationType_Repeating;
+		leftCastingAnimation.state = kAnimationState_Running;
+		leftCastingAnimation.bounceFrame = 1;
+        
+        // Up casting animation
+        [upCastingAnimation addFrameWithImage:[test imageForKey:@"castingUp.png"] delay:animationDelay];
+        
+		upCastingAnimation.type = kAnimationType_Repeating;
+		upCastingAnimation.state =  kAnimationState_Running;
+		upCastingAnimation.bounceFrame = 1;
+        
+        // Down casting animation
+        [downRangedAttackAnimation addFrameWithImage:[test imageForKey:@"castingDown.png"] delay:animationDelay];
+        
+		downRangedAttackAnimation.type = kAnimationType_Repeating;
+		downRangedAttackAnimation.state = kAnimationState_Running;
+		downRangedAttackAnimation.bounceFrame = 0;
+        
+        
+        // Victory animation
+        [winning addFrameWithImage:[test imageForKey:@"victory.png"] delay:animationDelay];
+        
+		winning.type = kAnimationType_Repeating;
+		winning.state = kAnimationState_Running;
+		winning.bounceFrame = 0;
+        
+        
+        /*   //Annika
+        
+        // Right animation  //start with mid run > run 1 > mid run > run 3 > standing
+		[rightAnimation addFrameWithImage:[test imageForKey:@"AwalkingRight1.png"] delay:animationDelay];
+		[rightAnimation addFrameWithImage:[test imageForKey:@"AwalkingRight2.png"] delay:animationDelay];
+		[rightAnimation addFrameWithImage:[test imageForKey:@"AwalkingRight3.png"] delay:animationDelay];
+		[rightAnimation addFrameWithImage:[test imageForKey:@"AwalkingRight2.png"] delay:animationDelay];
+		[rightAnimation addFrameWithImage:[test imageForKey:@"AwalkingRight2.png"] delay:animationDelay];
+		rightAnimation.type = kAnimationType_Repeating;
+		rightAnimation.state = kAnimationState_Running;
+		rightAnimation.bounceFrame = 4;
+        
+        // Left animation
+		[leftAnimation addFrameWithImage:[test imageForKey:@"AwalkingLeft1.png"] delay:animationDelay];
+		[leftAnimation addFrameWithImage:[test imageForKey:@"AwalkingLeft2.png"] delay:animationDelay];
+		[leftAnimation addFrameWithImage:[test imageForKey:@"AwalkingLeft3.png"] delay:animationDelay];
+		[leftAnimation addFrameWithImage:[test imageForKey:@"AwalkingLeft2.png"] delay:animationDelay];
+		[leftAnimation addFrameWithImage:[test imageForKey:@"AwalkingLeft2.png"] delay:animationDelay];
+		leftAnimation.type = kAnimationType_Repeating;
+		leftAnimation.state = kAnimationState_Running;
+		leftAnimation.bounceFrame = 4;
+        
+        // Down animation
+		[downAnimation addFrameWithImage:[test imageForKey:@"AwalkingDown1.png"] delay:animationDelay];
+		[downAnimation addFrameWithImage:[test imageForKey:@"AwalkingDown2.png"] delay:animationDelay];
+		[downAnimation addFrameWithImage:[test imageForKey:@"AwalkingDown3.png"] delay:animationDelay];
+		[downAnimation addFrameWithImage:[test imageForKey:@"AwalkingDown2.png"] delay:animationDelay];
+		[downAnimation addFrameWithImage:[test imageForKey:@"AwalkingDown2.png"] delay:animationDelay];
+		downAnimation.type = kAnimationType_Repeating;
+		downAnimation.state = kAnimationState_Running;
+		downAnimation.bounceFrame = 4;
+        
+        // Up animation
+		[upAnimation addFrameWithImage:[test imageForKey:@"AwalkingUp1.png"] delay:animationDelay];
+		[upAnimation addFrameWithImage:[test imageForKey:@"AwalkingUp2.png"] delay:animationDelay];
+		[upAnimation addFrameWithImage:[test imageForKey:@"AwalkingUp3.png"] delay:animationDelay];
+		[upAnimation addFrameWithImage:[test imageForKey:@"AwalkingUp2.png"] delay:animationDelay];
+		[upAnimation addFrameWithImage:[test imageForKey:@"AwalkingUp2.png"] delay:animationDelay];
+		upAnimation.type = kAnimationType_Repeating;
+		upAnimation.state = kAnimationState_Running;//not 9 0 9 1 2
+		upAnimation.bounceFrame = 4;                //not 9 9 0 2
+//end Annika */
+        //Skidd Animation
+   /*     // Right animation  //start with mid run > run 1 > mid run > run 3 > standing
+		[rightAnimation addFrameWithImage:[test imageForKey:@"SrunningRight1.png"] delay:animationDelay];
+		[rightAnimation addFrameWithImage:[test imageForKey:@"SrunningRight2.png"] delay:animationDelay];
+		[rightAnimation addFrameWithImage:[test imageForKey:@"SrunningRight3.png"] delay:animationDelay];
+		[rightAnimation addFrameWithImage:[test imageForKey:@"SrunningRight2.png"] delay:animationDelay];
+		[rightAnimation addFrameWithImage:[test imageForKey:@"SrunningRight2.png"] delay:animationDelay];
+		rightAnimation.type = kAnimationType_Repeating;
+		rightAnimation.state = kAnimationState_Running;
+		rightAnimation.bounceFrame = 4;
+        
+        // Left animation
+		[leftAnimation addFrameWithImage:[test imageForKey:@"SrunningLeft1.png"] delay:animationDelay];
+		[leftAnimation addFrameWithImage:[test imageForKey:@"SrunningLeft2.png"] delay:animationDelay];
+		[leftAnimation addFrameWithImage:[test imageForKey:@"SrunningLeft3.png"] delay:animationDelay];
+		[leftAnimation addFrameWithImage:[test imageForKey:@"SrunningLeft2.png"] delay:animationDelay];
+		[leftAnimation addFrameWithImage:[test imageForKey:@"SrunningLeft2.png"] delay:animationDelay];
+		leftAnimation.type = kAnimationType_Repeating;
+		leftAnimation.state = kAnimationState_Running;
+		leftAnimation.bounceFrame = 4;
+        
+        // Down animation
+		[downAnimation addFrameWithImage:[test imageForKey:@"SrunningDown1.png"] delay:animationDelay];
+		[downAnimation addFrameWithImage:[test imageForKey:@"SrunningDown2.png"] delay:animationDelay];
+		[downAnimation addFrameWithImage:[test imageForKey:@"SrunningDown3.png"] delay:animationDelay];
+		[downAnimation addFrameWithImage:[test imageForKey:@"SrunningDown2.png"] delay:animationDelay];
+		[downAnimation addFrameWithImage:[test imageForKey:@"SrunningDown2.png"] delay:animationDelay];
+		downAnimation.type = kAnimationType_Repeating;
+		downAnimation.state = kAnimationState_Running;
+		downAnimation.bounceFrame = 4;
+        
+        // Up animation
+		[upAnimation addFrameWithImage:[test imageForKey:@"SrunningUp1.png"] delay:animationDelay];
+		[upAnimation addFrameWithImage:[test imageForKey:@"SrunningUp2.png"] delay:animationDelay];
+		[upAnimation addFrameWithImage:[test imageForKey:@"SrunningUp3.png"] delay:animationDelay];
+		[upAnimation addFrameWithImage:[test imageForKey:@"SrunningUp2.png"] delay:animationDelay];
+		[upAnimation addFrameWithImage:[test imageForKey:@"SrunningUp2.png"] delay:animationDelay];
+		upAnimation.type = kAnimationType_Repeating;
+		upAnimation.state = kAnimationState_Running;//not 9 0 9 1 2
+		upAnimation.bounceFrame = 4;
+*/
+    /*?        //Winning animation
+        [winning addFrameWithImage:[spriteSheet spriteImageAtCoords:CGPointMake(7,3)] delay: .5];
+        [winning addFrameWithImage:[spriteSheet spriteImageAtCoords:CGPointMake(6,5)] delay: .18];
+        [winning addFrameWithImage:[spriteSheet spriteImageAtCoords:CGPointMake(4,4)] delay: .15];
+        [winning addFrameWithImage:[spriteSheet spriteImageAtCoords:CGPointMake(8,1)] delay: .12];
+        [winning addFrameWithImage:[spriteSheet spriteImageAtCoords:CGPointMake(7,2)] delay: .3];
+        winning.type = kAnimationType_Once;
+        winning.state = kAnimationState_Running;
+        
+        //right attack animation
+        [rightAttackAnimation addFrameWithImage:[spriteSheet spriteImageAtCoords:CGPointMake(0,1)] delay:.13];
+        [rightAttackAnimation addFrameWithImage:[spriteSheet spriteImageAtCoords:CGPointMake(0,2)]  delay:.13];
+        [rightAttackAnimation addFrameWithImage:[spriteSheet spriteImageAtCoords:CGPointMake(0,3)] delay:.13];
+        [rightAttackAnimation addFrameWithImage:[spriteSheet spriteImageAtCoords:CGPointMake(0,4)]  delay:.13];
+        rightAttackAnimation.type = kAnimationType_Repeating;
+        rightAttackAnimation.state = kAnimationState_Running;
+        
+        //left attack animation
+        [leftAttackAnimation addFrameWithImage:[spriteSheet spriteImageAtCoords:CGPointMake(2,1)] delay:.13];
+        [leftAttackAnimation addFrameWithImage:[spriteSheet spriteImageAtCoords:CGPointMake(2,2)]  delay:.13];
+        [leftAttackAnimation addFrameWithImage:[spriteSheet spriteImageAtCoords:CGPointMake(2,3)] delay:.13];
+        [leftAttackAnimation addFrameWithImage:[spriteSheet spriteImageAtCoords:CGPointMake(2,4)]  delay:.13];
+        leftAttackAnimation.type = kAnimationType_Repeating;
+        leftAttackAnimation.state = kAnimationState_Running;
+        
+        // right Battle Idle animation
+        [rightBattleIdleAnimation addFrameWithImage:[spriteSheet spriteImageAtCoords:CGPointMake(0,0)] delay:.8];
+        [rightBattleIdleAnimation addFrameWithImage:[spriteSheet spriteImageAtCoords:CGPointMake(1,0)]  delay:.5];
+        rightBattleIdleAnimation.type = kAnimationType_Repeating;
+        rightBattleIdleAnimation.state = kAnimationState_Running;
+        
+        // left Battle Idle animation
+        [leftBattleIdleAnimation addFrameWithImage:[spriteSheet spriteImageAtCoords:CGPointMake(1,5)] delay:.8];
+        [leftBattleIdleAnimation addFrameWithImage:[spriteSheet spriteImageAtCoords:CGPointMake(2,5)]  delay:.5];
+        leftBattleIdleAnimation.type = kAnimationType_Repeating;
+        leftBattleIdleAnimation.state = kAnimationState_Running;
+        
+        // Migawari animation
+        [migawariAnimation addFrameWithImage: [spriteSheet spriteImageAtCoords:CGPointMake(3,5)] delay: .1];
+        [migawariAnimation addFrameWithImage: [spriteSheet spriteImageAtCoords:CGPointMake(3,6)] delay: .08];
+        [migawariAnimation addFrameWithImage: [spriteSheet spriteImageAtCoords:CGPointMake(3,7)] delay: .05];
+        [migawariAnimation addFrameWithImage: [spriteSheet spriteImageAtCoords:CGPointMake(5,5)] delay: .57];
+        migawariAnimation.type = kAnimationType_Repeating;
+        migawariAnimation.state = kAnimationState_Running;
+   */     
+        
+        // End of Animation definitions//
+        
+
+        // Set the default animation to be facing the right with the selected frame
+        // showing the player standing
+        currentAnimation = downCastingAnimation;
+     //   currentAnimation.state = kAnimationState_Stopped;
+        [currentAnimation setCurrentFrame:0];
+
+        // Speed at which the player moves
+        playerSpeed = 0.6f;
+        
+        // Set the players state to alive
+        state = kEntityState_Casting;
+		experience = 0;
+        energy = 1;
+		// Default player values
+        [self checkForLevelUpExp:0.0f];
+        energy = maxEnergy;
+ 
+        magic = maxMagic;
+        target = nil;
+		maxLogs = 3;
+        logs = 0;
+        
+        
+        abilityTimer1 = 0;
+        abilityTimer2 = 0;
+        abilityTimer3 = 0;
+        abilityTimer4 = 0;
+        
+        self.isEnemy = NO;
+        self.isDying = YES;
+        // Number of seconds the player stays dead before reappearing
+		stayDeadTime = 4;
+		deathTimer = 0;
+		appearingTimer = 0;
+		
+        // Init battle condition
+        inBattle = NO;
+     
+        energyDrain = strength * .5;
+        attackTimer = 0;
+        controlDelta = 0;
+        animationDelta = 0;
+        timeAlive = 0;
+
+    return self;
+    }
+}
+- (void) setInBattle:(BOOL)aBattle {
+    
+        inBattle = aBattle;
+
+}
+#pragma mark -
+#pragma mark Update
+
+- (void)updateWithDelta:(GLfloat)aDelta scene:(GameScene*)aScene {
+
+
+    timeAlive += aDelta;
+    if(shurikenTimer > 0)
+        shurikenTimer -= aDelta;
+    
+    if(attackTimer >= 3) {
+        attackRound = YES;
+    }
+    // _____________REMOVE?_________________
+    if(attackTimer > 0&& attackTimer <= .1) {
+        state = kEntityState_Alive;
+    }
+    
+    if(isLAtk) {
+            animationDelta += aDelta;
+        if(rightBlood.particleCount == 0) {
+            rightBlood.sourcePosition = Vector2fMake(pixelLocation.x, pixelLocation.y);
+            [rightBlood setDuration:-1];
+            [rightBlood setActive:YES];
+        }
+            if(animationDelta < .2 && animationDelta > .13) {
+                [sharedSoundManager playSoundWithKey:@"fightsound" location: CGPointMake(240,150)];
+                animationDelta += .1;
+            }
+            else if(animationDelta > .7) {
+                animationDelta = 0;
+                isLAtk = NO;
+                
+                [rightBlood setActive:NO];
+            }
+            
+    }
+    if(isRAtk) {
+            animationDelta += aDelta;
+        if(leftBlood.particleCount == 0) {
+            leftBlood.sourcePosition = Vector2fMake(pixelLocation.x, pixelLocation.y);
+            [leftBlood setDuration:-1];
+            [leftBlood setActive:YES];
+        }
+            if(animationDelta > .6) {
+                animationDelta = 0;
+                isRAtk = NO;
+                
+                [leftBlood setActive:NO];
+            }
+            else if(animationDelta < .2 && animationDelta > .13) {
+                [sharedSoundManager playSoundWithKey:@"fightsound" location: CGPointMake(240,150)];
+                animationDelta += .1;
+        }
+    }
+    if(state == kEntityState_Miga){
+        [dyingEmitter updateWithDelta:aDelta];
+        animationDelta += aDelta;
+        if(animationDelta > .8) {
+            animationDelta = 0;
+            state = kEntityState_Alive;
+            [smoke setActive:NO];
+        }
+    }
+    // Check the state of the player and update them accordingly
+    switch (state) {
+        
+            
+        case kEntityState_Casting:
+            appearingTimer += aDelta;
+  //          overlay.color = Color4fMake(1,1,1,1);
+                                        //.2 + .3 * sin(appearingTimer * 10), .2 + .3 * cos(appearingTimer * 10), .7 + .3 * sin(appearingTimer * 10));
+ //           overlay.scale = Scale2fMake(1 + sin(10 * appearingTimer), 1 + sin(10 * appearingTimer));
+ //           [overlay renderAtPoint:CGPointMake(1,272)];
+            if(appearingTimer >= 1.5){
+                appearingTimer = 0;
+                state = kEntityState_Alive;
+                currentAnimation = downAnimation;
+            }
+   //         currentAnimation = downCastingAnimation;
+            break;
+        case kEntityState_Defend:
+        case kEntityState_Evade:
+        
+            appearingTimer += aDelta;
+  //          overlay.color = Color4fMake(1, 1, 1, 1 - aDelta);
+  //          overlay.scale = Scale2fMake(1 + appearingTimer * 3, 1+ appearingTimer *.3);
+  //          [overlay renderAtPoint:CGPointMake(pixelLocation.x, pixelLocation.y)];
+  //          renderSprite = NO;
+            if(appearingTimer >= .2) {
+                renderSprite = YES;
+            }
+            if(state == kEntityState_Evade) {
+                
+                state = kEntityState_Alive;
+                break;
+            }
+            break;
+        case kEntityState_Winning:
+        {
+            [self updateLocationWithDelta:aDelta];
+            currentAnimation = winning;
+            break;
+        }
+        case kEntityState_Miga:
+        case kEntityState_Appearing:
+		case kEntityState_Alive:
+        case kEntityState_Hit:
+			if(smoke.particleCount == 0 && state == kEntityState_Miga) {
+				smoke.sourcePosition = Vector2fMake(pixelLocation.x + 16, pixelLocation.y-20);
+				[smoke setDuration:-1];
+				[smoke setActive:YES];
+			}
+            if(kEntityState_Miga == state)
+                [smoke updateWithDelta:aDelta];
+            
+            
+			// If the player is appearing then update the timers
+			if (state == kEntityState_Appearing || state == kEntityState_Hit) {
+				appearingTimer += aDelta;
+
+				// If the player has been appearing for more than 2 seconds then set their
+				// state to alive
+				if (appearingTimer >= .1) {
+					state = previousState;
+					appearingTimer = 0;
+				}
+
+				//  The player sprite will only be rendered if the renderSprite flag is YES. This
+				// allows us to make the player blink when appearing
+				blinkTimer += aDelta;
+				if (blinkTimer >= 0.01) {
+					renderSprite = (renderSprite == YES) ? NO : YES;
+					blinkTimer = 0;
+				}
+                state = kEntityState_Alive;
+			}
+
+            // Update the players position
+        
+            [self updateLocationWithDelta:aDelta];
+			
+			// If the players energy reaches 0 then set their state to
+			// dead
+			if (energy <= 0) {
+				state = kEntityState_Dead;
+				
+				// Set the energy to 0 else a small amount of energy could be left
+				// showing even though the player is dead
+				energy = 0;
+				
+				// Reduce the number of lives the player has.  If the player is then below the minimum number of lives
+				// they are dead, for good, so we set the game scene state to game over.
+				lives -= 1;
+				if (lives < 1) {
+					aScene.state = kSceneState_GameOver;
+				}
+				
+				// The player has died so play a suitable scream
+				//[sharedSoundManager playSoundWithKey:@"scream" location:pixelLocation];
+			}
+            break;
+	
+		case kEntityState_Dead:
+            timeAlive = 0;
+			// The player should stay dead for the time defined in stayDeadTime.  After this time has passed
+			// the players state is set back to alive and their energy is reset
+			deathTimer += aDelta;
+			if (deathTimer >= stayDeadTime) {
+				deathTimer = 0;
+				state = kEntityState_Appearing;
+				energy = maxEnergy;
+			}
+			break;
+        default:
+            break;
+    }
+
+}
+
+- (void)setState:(uint)aState {
+	state = aState;
+}
+
+#pragma mark -
+#pragma mark Render
+
+- (void)render {
+
+	switch (state) {
+		case kEntityState_Alive:
+        case kEntityState_Casting:
+            [super render];
+            [currentAnimation renderCenteredAtPoint:CGPointMake((int)pixelLocation.x, (int)pixelLocation.y)];
+            break;
+
+        case kEntityState_Defend:
+        case kEntityState_Winning:
+        case kEntityState_Idle:
+        case kEntityState_Lattack:
+            [super render];
+            [rightBlood renderParticles];
+			[currentAnimation renderCenteredAtPoint:CGPointMake((int)pixelLocation.x, (int)pixelLocation.y)];
+			break;
+        
+        case kEntityState_Rattack:
+            [super render];
+            [leftBlood renderParticles];
+			[currentAnimation renderCenteredAtPoint:CGPointMake((int)pixelLocation.x, (int)pixelLocation.y)];
+            break;
+        case kEntityState_Miga:
+			[super render];
+            [smoke renderParticles];
+			[currentAnimation renderCenteredAtPoint:CGPointMake((int)pixelLocation.x, (int)pixelLocation.y)];
+			break;
+			
+		case kEntityState_Appearing:
+			[super render];
+			if (renderSprite)
+				[currentAnimation renderCenteredAtPoint:CGPointMake((int)pixelLocation.x, (int)pixelLocation.y)];
+            break;
+        case kEntityState_Evade:
+        case kEntityState_Hit:
+
+           [super render];
+            
+            if (renderSprite)
+                [currentAnimation renderCenteredAtPoint:CGPointMake((int)pixelLocation.x, (int) pixelLocation.y)];
+			break;
+		default:
+			break;
+	}
+
+
+}
+
+#pragma mark -
+#pragma mark Bounds & Collision
+
+- (CGRect)movementBounds { 
+	// Calculate the pixel position and return a CGRect that defines the bounds
+	pixelLocation = tileMapPositionToPixelPosition(tileLocation);
+	return CGRectMake(pixelLocation.x-8, pixelLocation.y-28, 14, 10);
+    
+}
+
+- (CGRect)collisionBounds {
+	// Calculate the pixel position and return a CGRect that defines the bounds
+	pixelLocation = tileMapPositionToPixelPosition(tileLocation);
+	return CGRectMake(pixelLocation.x - 10, pixelLocation.y - 20, 20, 35);
+}
+
+- (void)checkForCollisionWithEntity:(AbstractEntity*)aEntity {
+	
+    if([aEntity isKindOfClass:[EnemyShuriken class]] && aEntity.state == kEntityState_Alive) {
+		if (CGRectIntersectsRect([self collisionBounds], [aEntity collisionBounds])) {
+            int damage = aEntity.energyDrain;
+            energy -= energyDrain;
+            NSString *damageString = [[NSString alloc] initWithFormat:@"%i", damage];
+            [scene createDamageTextbox:damageString aLocation:CGPointMake(pixelLocation.x,pixelLocation.y)];
+            dyingEmitter.sourcePosition = Vector2fMake(pixelLocation.x, pixelLocation.y);
+            [dyingEmitter setDuration:kDyingEmitterDuration];
+            [dyingEmitter setActive:YES];
+            aEntity.state = kEntityState_Idle;
+		}
+	}
+    if (CGRectIntersectsRect([self collisionBounds], [aEntity collisionBounds])) {
+		if([aEntity isKindOfClass:[EnemyShuriken class]]&& state == kEntityState_Alive && timeAlive > 1){
+            energy -= aEntity.energyDrain;
+            
+        [sharedSoundManager playSoundWithKey:@"voice1" gain:0.25f pitch:.80f location:pixelLocation shouldLoop:NO];
+        }
+        if(([aEntity isKindOfClass:[Ghost class]] ||
+		   [aEntity isKindOfClass:[Frank class]] ||
+		   [aEntity isKindOfClass:[Witch class]] ||
+		   [aEntity isKindOfClass:[Pumpkin class]] ||
+		   [aEntity isKindOfClass:[Bat class]] ||
+		   [aEntity isKindOfClass:[Vampire class]] ||
+		   [aEntity isKindOfClass:[Zombie class]]) && state == kEntityState_Alive) {
+
+            if(attackRound)
+            {
+                if(target.pixelLocation.x < pixelLocation.x) {
+                    isLAtk = YES;
+                    leftBlood.sourcePosition = Vector2fMake(pixelLocation.x, pixelLocation.y);
+                    [leftBlood setDuration: .1f];
+                    [leftBlood setActive:YES];
+            //   [sharedSoundManager playSoundWithKey:@"scream" gain:0.25f pitch:1.80f location:pixelLocation shouldLoop:NO];
+                }
+
+                else {
+                    isRAtk = YES;
+                    rightBlood.sourcePosition = Vector2fMake(pixelLocation.x,pixelLocation.y);
+                    [rightBlood setDuration: .1f];
+                    [rightBlood setActive:YES];
+                }
+                attackTimer = -.4;
+                [sharedSoundManager playSoundWithKey:@"katana" location: CGPointMake(240, 150)];
+
+                attackRound = NO;
+                aEntity.energy = aEntity.energy - energyDrain;
+                float aPoint = aEntity.tileLocation.x + .15 * -cos(angle);
+                [aEntity setTileLocation:CGPointMake(aPoint, aEntity.tileLocation.y)];
+                aPoint = aEntity.tileLocation.y + .15 -sin(angle);
+                if(aEntity.energy <= 0) {
+                    scene.numberOfMonsters -=1;
+                }
+            }
+            if(aEntity.attackRound){
+                if(logs <= 0) {
+                    energy -= aEntity.energyDrain;
+                    //if(kEntityState_Lattack != state || kEntityState_Rattack != state)
+                      //  previousState = state;
+                    
+                    state = kEntityState_Hit;
+                    tileLocation.x += .15 * cos(angle);
+                    tileLocation.y += .15 * sin(angle);
+                    [sharedSoundManager playSoundWithKey:@"hurt" location: CGPointMake(240,150)];
+            }
+                else {
+                    [migawariAnimation setCurrentFrame:1];
+                    state = kEntityState_Miga;
+                    logs = logs - 1;
+                    [sharedSoundManager playSoundWithKey:@"swoosh" location:CGPointMake(240,150)];
+                   // currentAnimation = migawariAnimation;
+                    smoke.sourcePosition = Vector2fMake(pixelLocation.x+16, pixelLocation.y -20);
+                    [smoke setDuration:.8f];
+                    [smoke setActive:YES];
+                }
+                [aEntity setAttackRound:NO];
+                [aEntity setAttackTimer:0];
+
+                if(target != nil)
+                    target = aEntity; //setting the last one that hit him as the target
+            }
+		}
+	}
+} 
+
+- (void)checkForCollisionWithObject:(AbstractObject*)aObject {
+		
+	if (CGRectIntersectsRect([self collisionBounds], [aObject collisionBounds])) {
+		if ([aObject isKindOfClass:[EnergyObject class]]) {
+					energy += aObject.energy;
+					if (energy > maxEnergy) {
+						energy = maxEnergy;
+					}
+		}
+	}
+}
+
+
+#pragma mark -
+#pragma mark Inventory
+
+- (void)placeInInventoryObject:(AbstractObject*)aObject {
+	
+	if (aObject.state == kObjectState_Active) {
+		if (!self.inventory1) {
+			self.inventory1 = aObject;
+			aObject.state = kObjectState_Inventory;
+			aObject.isCollectable = NO;
+			aObject.pixelLocation = CGPointMake(180, 303);
+			[self checkForParchment:aObject pickup:YES];
+		} else if (!self.inventory2) {
+			aObject.state = kObjectState_Inventory;
+			aObject.isCollectable = NO;
+			aObject.pixelLocation = CGPointMake(240, 303);
+			self.inventory2 = aObject;
+			[self checkForParchment:aObject pickup:YES];
+		} else if (!self.inventory3) {
+			aObject.state = kObjectState_Inventory;
+			aObject.isCollectable = NO;
+			aObject.pixelLocation = CGPointMake(300, 303);
+			self.inventory3 = aObject;
+			[self checkForParchment:aObject pickup:YES];
+		}
+	}
+}
+
+- (void)dropInventoryFromSlot:(int)aInventorySlot {
+
+	AbstractObject *invObject = nil;
+	
+	// Associate the dropped inventory item to invObject
+	if (aInventorySlot == 0) {
+		invObject = self.inventory1;
+	} else if (aInventorySlot == 1) {
+		invObject = self.inventory2;
+	} else if (aInventorySlot == 2) {
+		invObject = self.inventory3;
+	}
+	
+	// Change the properties of invObject so that the object is placed
+	// back into the map
+	if (invObject) {
+		invObject.pixelLocation = pixelLocation;
+		invObject.tileLocation = tileLocation;
+		invObject.state = kObjectState_Active;
+	}
+
+}
+
+#pragma mark -
+#pragma mark Encoding
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+	// Initialize the player
+	[self initWithTileLocation:CGPointMake(0, 0)];
+	
+	// Load in the important variables from the decoder
+	self.tileLocation = [aDecoder decodeCGPointForKey:@"position"];
+	self.angleOfMovement = [aDecoder decodeFloatForKey:@"directionAngle"];
+	self.energy = [aDecoder decodeFloatForKey:@"energy"];
+	self.lives = [aDecoder decodeFloatForKey:@"lives"];
+	self.inventory1 = [aDecoder decodeObjectForKey:@"inventory1"];
+	self.inventory2 = [aDecoder decodeObjectForKey:@"inventory2"];
+	self.inventory3 = [aDecoder decodeObjectForKey:@"inventory3"];
+	
+	// Set up the initial pixel position based on the players tile position
+	pixelLocation = tileMapPositionToPixelPosition(tileLocation);
+	
+	// Make sure that the inventory items are rotated correctly.
+
+	return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+	// Encode the important variables to save the players state
+	[aCoder encodeCGPoint:tileLocation forKey:@"position"];
+	[aCoder encodeFloat:angleOfMovement forKey:@"directionAngle"];
+	[aCoder encodeFloat:energy forKey:@"energy"];
+	[aCoder encodeFloat:lives forKey:@"lives"];
+	[aCoder encodeObject:inventory1 forKey:@"inventory1"];
+	[aCoder encodeObject:inventory2 forKey:@"inventory2"];
+	[aCoder encodeObject:inventory3 forKey:@"inventory3"];
+}
+
+#pragma mark -
+#pragma mark Setters
+
+- (void)setDirectionWithAngle:(float)aAngle speed:(float)aSpeed {
+	self.angleOfMovement = aAngle;
+	self.speedOfMovement = aSpeed;
+}
+
+@end
+
+#pragma mark -
+#pragma mark Private implementation
+
+@implementation Player (Private)
+
+- (void)updateLocationWithDelta:(float)aDelta {
+  
+    controlDelta += aDelta;
+    if(controlDelta > (1.0/30.0)) {
+	
+    // Holds the bounding box verticies in tile map coordinates
+	BoundingBoxTileQuad bbtq;
+	float distanceControl = .5;
+	CGPoint oldPosition = tileLocation;
+        if(inBattle) {
+        
+        if(target == nil || target.energy < 0) {
+            speedOfMovement = 0;
+            speed = 0;
+            target = nil;
+            if(currentAnimation == rightAnimation)
+                currentAnimation = rightBattleIdleAnimation;
+            if(currentAnimation == leftAnimation)
+                currentAnimation = leftBattleIdleAnimation;
+        }
+        if(target != nil){
+            if((target.pixelLocation.y - .05 < pixelLocation.y ||
+               target.pixelLocation.y + .05 > pixelLocation.y) &&
+               (target.tileLocation.x - distanceControl > tileLocation.x + .1 ||
+               target.tileLocation.x - distanceControl < tileLocation.x - .1) 
+               && attackRound && state != kEntityState_Hit && state != kEntityState_Miga
+               ) {
+            speedOfMovement = 0;
+                            
+            speed = 3.5;
+            
+            float dx = tileLocation.x - target.tileLocation.x - distanceControl;
+            float dy = tileLocation.y +.1 - target.tileLocation.y;
+            angle= atan2(dy, dx) - DEGREES_TO_RADIANS(180);
+            tileLocation.x += (speed * aDelta) * cos(angle);
+            tileLocation.y += (speed * aDelta) * sin(angle);
+            }
+            else{
+                speed = 0;
+            }
+
+        }    
+            else {
+                speed = 0;
+                speedOfMovement = 0;
+                currentAnimation = rightBattleIdleAnimation;
+                
+           }
+
+         if(isRAtk)
+            currentAnimation = rightAttackAnimation;
+        else if(isLAtk)
+            currentAnimation = leftAttackAnimation;
+        else if(state == kEntityState_Miga)
+            currentAnimation = migawariAnimation;
+      
+        else if(speed != 0 && state != kEntityState_Hit){
+    
+            if (angle > 0.785 && angle < 2.355) {
+                currentAnimation = upAnimation;
+            } else if (angle < -0.785 && angle > -2.355) {
+                currentAnimation = downAnimation;
+            } else if (angle < -2.355 || angle > 2.355) {
+                currentAnimation = rightAnimation;
+            } else  {
+                currentAnimation = leftAnimation;
+            }
+        }
+        
+        else if(target.pixelLocation.x  < pixelLocation.x) {
+
+                currentAnimation = leftBattleIdleAnimation;
+        }
+        else
+            currentAnimation = rightBattleIdleAnimation;
+		
+		// Check to see if any of the players bounds are in a blocked tile.  If they are
+		// then set the x location back to its original location
+		
+        CGRect bRect = [self movementBounds];
+		bbtq = getTileCoordsForBoundingRect(bRect, CGSizeMake(kTile_Width, kTile_Height));
+		if ([scene isBlocked:bbtq.x1 y:bbtq.y1] ||
+			[scene isBlocked:bbtq.x2 y:bbtq.y2] ||
+			[scene isBlocked:bbtq.x3 y:bbtq.y3] ||
+			[scene isBlocked:bbtq.x4 y:bbtq.y4] ||
+            [scene isPlayerOnTopOfEnemy]        ||
+            [scene isPlayerOnTopOfMapObject]
+            ) {
+			tileLocation.x = oldPosition.x;
+            tileLocation.y = oldPosition.y;
+		}
+        
+
+		// Check to see if any of the players bounds are in a blocked tile.  If they are
+		// then set the x location back to its original location
+		bRect = [self movementBounds];
+		bbtq = getTileCoordsForBoundingRect(bRect, CGSizeMake(kTile_Width, kTile_Height));
+		if ([scene isBlocked:bbtq.x1 y:bbtq.y1] ||
+			[scene isBlocked:bbtq.x2 y:bbtq.y2] ||
+			[scene isBlocked:bbtq.x3 y:bbtq.y3] ||
+			[scene isBlocked:bbtq.x4 y:bbtq.y4] ||
+            [scene isPlayerOnTopOfEnemy]        ||
+            [scene isPlayerOnTopOfMapObject]
+            ) {
+			tileLocation.y = oldPosition.y;
+            tileLocation.x = oldPosition.x;
+		}
+
+        [currentAnimation setState:kAnimationState_Running];
+        [currentAnimation updateWithDelta:controlDelta];
+    
+    }
+
+    else if (speedOfMovement != 0) {
+		
+		// Move the player in the x-axis based on the angle of the joypad
+		tileLocation.x -= (aDelta * (playerSpeed * speedOfMovement)) * cosf(angleOfMovement);
+		
+		// Check to see if any of the players bounds are in a blocked tile.  If they are
+		// then set the x location back to its original location
+		CGRect bRect = [self movementBounds];
+		bbtq = getTileCoordsForBoundingRect(bRect, CGSizeMake(kTile_Width, kTile_Height));
+		if ([scene isBlocked:bbtq.x1 y:bbtq.y1] ||
+			[scene isBlocked:bbtq.x2 y:bbtq.y2] ||
+			[scene isBlocked:bbtq.x3 y:bbtq.y3] ||
+			[scene isBlocked:bbtq.x4 y:bbtq.y4] ||
+            [scene isPlayerOnTopOfEnemy]        ||
+            [scene isPlayerOnTopOfMapObject]
+            /*||
+            [scene isEntityInTileAtCoords: CGPointMake(bbtq.x1, bbtq.y1)] ||
+            [scene isEntityInTileAtCoords: CGPointMake(bbtq.x2, bbtq.y2)] ||
+            [scene isEntityInTileAtCoords: CGPointMake(bbtq.x3, bbtq.y3)] ||
+            [scene isEntityInTileAtCoords: CGPointMake(bbtq.x4, bbtq.y4)] 
+            */
+             ){
+			
+             tileLocation.x = oldPosition.x;
+		}
+		
+		// Move the player in the y-axis based on the angle of the joypad
+		tileLocation.y -= (aDelta * (playerSpeed * speedOfMovement)) * sinf(angleOfMovement);
+		
+		// Check to see if any of the players bounds are in a blocked tile.  If they are
+		// then set the x location back to its original location
+		bRect = [self movementBounds];
+		bbtq = getTileCoordsForBoundingRect(bRect, CGSizeMake(kTile_Width, kTile_Height));
+		if ([scene isBlocked:bbtq.x1 y:bbtq.y1] ||
+			[scene isBlocked:bbtq.x2 y:bbtq.y2] ||
+			[scene isBlocked:bbtq.x3 y:bbtq.y3] ||
+			[scene isBlocked:bbtq.x4 y:bbtq.y4] ||
+            [scene isPlayerOnTopOfEnemy]        ||
+            [scene isPlayerOnTopOfMapObject]
+      /*      ||
+            [scene isEntityInTileAtCoords: CGPointMake(bRect, bbtq.y1)] ||
+            [scene isEntityInTileAtCoords: CGPointMake(bbtq.x2, bbtq.y2)] ||
+            [scene isEntityInTileAtCoords: CGPointMake(bbtq.x3, bbtq.y3)] ||
+            [scene isEntityInTileAtCoords: CGPointMake(bbtq.x4, bbtq.y4)] 
+       */) {
+    
+            tileLocation.y = oldPosition.y;
+		}
+		
+		// Based on the players current direction angle in radians, decide
+		// which is the best animation to be using
+		if (angleOfMovement > 0.785 && angleOfMovement < 2.355) {
+			currentAnimation = downAnimation;
+		} else if (angleOfMovement < -0.785 && angleOfMovement > -2.355) {
+			currentAnimation = upAnimation;
+		} else if (angleOfMovement < -2.355 || angleOfMovement > 2.355) {
+			currentAnimation = rightAnimation;
+		} else  {
+			currentAnimation = leftAnimation;
+		}
+
+		[currentAnimation setState:kAnimationState_Running];
+        [currentAnimation updateWithDelta:controlDelta];
+		
+		// Set the OpenAL listener position within the sound manager to the location of the player
+		[sharedSoundManager setListenerPosition:CGPointMake(pixelLocation.x, pixelLocation.y)];
+	} 
+        
+    else {
+        [currentAnimation setState:kAnimationState_Stopped];
+        
+        [currentAnimation setCurrentFrame:4];
+    
+    }
+        controlDelta = 0;
+    }
+    if(state == kEntityState_Casting){
+        [currentAnimation setState: kAnimationState_Stopped];
+        [currentAnimation setCurrentFrame:0];
+        
+    }
+
+}
+
+- (void)checkForParchment:(AbstractObject*)aObject pickup:(BOOL)aPickup {
+
+	// Check to see if the object just picked up was part of the parchment needed to escape from the
+	// castle.  If pickup was YES then and the object was a parchment piece, then we set the approprite
+	// parchment variable to YES.  If we were putting it down, then we set the appropriate variable to NO
+	if (aPickup) {
+		if (aObject.subType == kObjectSubType_ParchmentTop) {
+			hasParchmentTop = YES;
+		} else if (aObject.subType == kObjectSubType_ParchmentMiddle) {
+			hasParchmentMiddle = YES;
+		} else if (aObject.subType == kObjectSubType_ParchmentBottom) {
+			hasParchmentBottom = YES;
+		}
+	} else {
+		if (aObject.subType == kObjectSubType_ParchmentTop) {
+			hasParchmentTop = NO;
+		} else if (aObject.subType == kObjectSubType_ParchmentMiddle) {
+			hasParchmentMiddle = NO;
+		} else if (aObject.subType == kObjectSubType_ParchmentBottom) {
+			hasParchmentBottom = NO;
+		}
+	}
+	
+	// If the player now has all three pieces of parchment then play the spell sound
+	if (hasParchmentTop && hasParchmentMiddle && hasParchmentBottom) {
+		[sharedSoundManager playSoundWithKey:@"spell" location:pixelLocation];
+	}
+}
+
+
+- (void)abilityOne {
+    if(magic > 2){
+        appearingTimer = 0;
+        state = kEntityState_Casting;
+        currentAnimation = downCastingAnimation;
+        [currentAnimation setCurrentFrame:0];
+        [currentAnimation setState:kAnimationState_Stopped];
+        logs = maxLogs;
+        abilityTimer1 = 8;
+        magic -= 2;
+    }
+}
+- (void)abilityTwo {
+    if(magic > 4){
+        state = kEntityState_Casting;
+        abilityTimer2 = 8;
+        magic -= 4;
+    }
+}
+- (void)abilityThree {
+    if(magic > 5){
+        state = kEntityState_Casting;
+        abilityTimer3 = 8;
+        magic -= 5;
+    }
+}
+- (void)abilityFour {
+    if(magic > 12){
+        state = kEntityState_Casting;
+        abilityTimer4 = 8;
+        magic -= 12;
+    }
+        
+}
+
+-(void) checkForLevelUpExp:(float)exp{  //called when enemy is defeated
+    if(energy >= 1){
+        experience += exp;
+        if(experience > 6927113){ //level:50
+            toNextLevel = 0;
+
+            level = 50;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 6130189){ //level:49
+            toNextLevel = 6927114- experience;
+            level = 49;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 5424946){ //level:48
+            toNextLevel = 6130190- experience;
+            level = 48;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 4800837){ //level:47
+            toNextLevel = 5424947- experience;
+            level = 47;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 4248528){ //level:46
+            toNextLevel = 48000838- experience;
+            level = 46;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 3759759){ //level:45
+            toNextLevel = 4248529- experience;
+            level = 45;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 3327221){ //level:44
+            toNextLevel = 3759760- experience;
+            level = 44;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 2944443){ //level:43
+            toNextLevel = 3327222- experience;
+            level = 43;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 2605702){ //level:42
+            toNextLevel = 2944444- experience;
+            level = 42;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 2305931){ //level:41
+            toNextLevel = 2605703- experience;
+            level = 41;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 2040647){ //level:40
+            toNextLevel = 2305932- experience;
+            level = 40;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 1805882){ //level:39
+            toNextLevel = 2040647- experience;
+
+            level = 39;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 1598125){ //level:38
+            toNextLevel = 1805882 - experience;
+            level = 38;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 1414270){ //level:37
+            toNextLevel = 1598126- experience;
+            level = 37;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 1251567){ //level:36
+            toNextLevel = 1414271- experience;
+
+            level = 36;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 1107581){ //level:35
+            toNextLevel =1251568 - experience;
+            level = 35;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 980160){ //level:34
+            toNextLevel = 1107582- experience;
+
+            level = 34;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 867398){ //level:33
+            toNextLevel = 980161- experience;
+
+            level = 33;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 767609){ //level:32
+            toNextLevel = 867399- experience;
+            level = 32;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 679300){ //level:31
+            toNextLevel = 767610- experience;
+            level = 31;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 588907){ //level:30
+            toNextLevel = 679301- experience;
+
+            level = 30;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 518785){ //level:29
+            toNextLevel = 588908- experience;
+            level = 29;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 453784){ //level:28
+            toNextLevel = 518786- experience;
+            level = 28;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 393651){ //level:27
+            toNextLevel = 453785- experience;
+            level = 27;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 338688){ //level:26
+            toNextLevel = 393652- experience;
+            level = 26;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 288460){ //level:25
+            toNextLevel = 338689- experience;
+            level = 25;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 243327){ //level:24
+            toNextLevel = 288461- experience;
+
+            level = 24;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 203229){ //level:23
+            toNextLevel = 243328- experience;
+            level = 23;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 168140){ //level:22
+            toNextLevel = 203230- experience;
+            level = 22;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 138112){ //level:21
+            toNextLevel = 168141- experience;
+
+            level = 21;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 110999){ //level:20
+            toNextLevel = 138113- experience;
+            level = 20;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 86896){ //level:19
+            toNextLevel = 111000- experience;
+            level = 19;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 64881){ //level:18
+            toNextLevel = 86897- experience;
+            level = 18;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 44475){ //level:17
+            toNextLevel = 64882- experience;
+
+            level = 17;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 30427){ //level:16
+            toNextLevel = 44476- experience;
+
+            level = 16;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 20783){ //level:15
+            toNextLevel = 30428- experience;
+
+            level = 15;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 14164){ //level:14
+            toNextLevel = 20784- experience;
+
+            level = 14;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 9622){ //level:13
+            toNextLevel = 141165- experience;
+
+            level = 13;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 6504){ //level:12
+            toNextLevel = 9623- experience;
+
+            level = 12;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 4375){ //level:11
+            toNextLevel = 6505- experience;
+
+            level = 11;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else         if(experience > 2924){ //level:10
+            toNextLevel = 4376- experience;
+
+            level = 10;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 1930){ //level:9
+            toNextLevel = 2925- experience;
+
+            level = 9;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 1260){ //level:8
+            toNextLevel = 1931- experience;
+
+            level = 8;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 808){ //level:7
+            toNextLevel = 1261- experience;
+
+            level = 7;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else         if(experience > 504){ //level:6
+            toNextLevel = 809- experience;
+
+            level = 6;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else         if(experience > 289){ //level:5
+            toNextLevel = 505- experience;
+
+            level = 5;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else         if(experience > 170){ //level:4
+            toNextLevel = 290 - experience;
+            level = 4;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else        if(experience > 83){ //level:3
+            toNextLevel = 171- experience;
+            level = 3;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else if(experience > 29){ //level:2
+            toNextLevel = 84- experience;
+
+            level = 2;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+        }else  if(experience < 30){ //level:1
+            toNextLevel = 30- experience;
+            level = 1;
+            maxEnergy = 30;
+            maxMagic = 5;
+            strength = 14;
+            vitality = 11;
+            agility = 16;
+            dexterity = 15;
+            intelligence = 10;
+            mind = 10;
+            luck = 12;
+            playerSpeed = 0.6f;
+            
+        }
+        [self recalculateStrength];
+        [self recalculateAgility];
+        [self recalculateVitality];
+        [self recalculateDexterity];
+        [self recalculateIntelligence];
+        [self recalculateMind];
+        [self recalculateLuck];
+        [self recalculateSpeed];
+        [self recalculateAttack];
+        [self recalculateDefense];
+        
+    }//energy check if bracket
+}
+
+-(void) recalculateDefense{
+    defense = vitality; //needs to be updated after equipment is implemented
+}
+-(void) recalculateAttack{
+    attack = strength; //needs to be updated after weapon is implemented
+}
+-(void) recalculateStrength{
+    strength = strength; //needs to be updated after equipment is implemented
+}
+-(void) recalculateAgility{
+    agility = agility; //needs to be updated after weapon is implemented
+}
+-(void) recalculateVitality{
+    vitality = vitality; //needs to be updated after equipment is implemented
+}
+-(void) recalculateDexterity{
+    dexterity = dexterity; //needs to be updated after weapon is implemented
+}
+-(void) recalculateIntelligence{
+    intelligence = intelligence; //needs to be updated after equipment is implemented
+}
+-(void) recalculateMind{
+    mind = mind; //needs to be updated after weapon is implemented
+}
+-(void) recalculateLuck{
+    luck = luck; //needs to be updated after equipment is implemented
+}
+-(void) recalculateSpeed{
+    playerSpeed = playerSpeed; //needs to be updated after weapon is implemented
+}
+
+@end
+

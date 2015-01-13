@@ -1,0 +1,1568 @@
+TZel's Adventure
+v7
+r1
+cCheck dependencies
+
+N/SLQTSOR/2.0.mp3
+c0000000050B44EEF000000000011F60B
+t1353993967
+s1177099
+
+N/SLQTSOR/2048tileset.png
+c0000000050DFD7BD000000000018CF4A
+t1356847037
+s1625930
+
+N/SLQTSOR/Battle.mp3
+c0000000050CFC2B50000000000114A9D
+t1355793077
+s1133213
+
+N/SLQTSOR/Character name .mp3
+c000000005011D4D1000000000009D87E
+t1343345873
+s645246
+
+N/SLQTSOR/Chase.mp3
+c000000004FE7861900000000001E514F
+t1340573209
+s1986895
+
+N/SLQTSOR/Classes/CreditsView.xib
+c0000000050D4D7B000000000000030B5
+t1356126128
+s12469
+
+N/SLQTSOR/Classes/InstructionsView.xib
+c0000000050D4D9B700000000000055DD
+t1356126647
+s21981
+
+N/SLQTSOR/Contemplate.mp3
+c000000004FE786230000000000111F59
+t1340573219
+s1122137
+
+N/SLQTSOR/Credits.png
+c000000004B92E08A000000000000EBE2
+t1267916938
+s60386
+
+N/SLQTSOR/Cutscene.mp3
+c000000004FF94A3900000000001A724A
+t1341737529
+s1733194
+
+N/SLQTSOR/Default.png
+c000000004FFA48AA0000000000001A1C
+t1341802666
+s6684
+
+N/SLQTSOR/Determined.mp3
+c000000004FE2A63000000000002EF344
+t1340253744
+s3076932
+
+N/SLQTSOR/End scene.mp3
+c0000000050E3A2A20000000000357D8E
+t1357095586
+s3505550
+
+N/SLQTSOR/Escape Battle 101bpm.mp3
+c0000000050B5947800000000001BEDE1
+t1354077304
+s1830369
+
+N/SLQTSOR/Escape DC.mp3
+c0000000050A6CE3F00000000000B1BC2
+t1353109055
+s728002
+
+N/SLQTSOR/Escape.mp3
+c000000004FE7860C00000000000B2C15
+t1340573196
+s732181
+
+N/SLQTSOR/Fightflight .mp3
+c000000005011D4CB00000000000C9344
+t1343345867
+s824132
+
+N/SLQTSOR/GameOver.png
+c000000004B3F64F6000000000002C312
+t1262445814
+s181010
+
+N/SLQTSOR/HighScoreCell.xib
+c000000004B7ECDC40000000000007045
+t1266601412
+s28741
+
+N/SLQTSOR/HighScoreView.xib
+c0000000050D4D9B7000000000000342E
+t1356126647
+s13358
+
+N/SLQTSOR/Homeport.mp3
+c000000005044058B00000000001D8526
+t1346635147
+s1934630
+
+N/SLQTSOR/Insomnaphoria.mp3
+c0000000050B44EF400000000002A44E6
+t1353993972
+s2770150
+
+N/SLQTSOR/Intensity.mp3
+c0000000050D51FE90000000000114A9D
+t1356144617
+s1133213
+
+N/SLQTSOR/Jungle?.mp3
+c00000000506F33450000000000063AC7
+t1349464901
+s408263
+
+N/SLQTSOR/LOL@annika'sbirthday.mp3
+c00000000506F3347000000000007743F
+t1349464903
+s488511
+
+N/SLQTSOR/Lucid.mp3
+c000000004FE785F800000000000FB344
+t1340573176
+s1028932
+
+N/SLQTSOR/MainWindow.xib
+c000000004B9DD9E50000000000004A43
+t1268636133
+s19011
+
+N/SLQTSOR/Night.mp3
+c000000004FE786040000000000089A20
+t1340573188
+s563744
+
+N/SLQTSOR/Noriko's Destiny.mp3
+c000000004FE786000000000000272344
+t1340573184
+s2564932
+
+N/SLQTSOR/Oppressed Town.mp3
+c000000004FE7861300000000001E514F
+t1340573203
+s1986895
+
+N/SLQTSOR/Over world 2.mp3
+c000000005011D4CE00000000000FB344
+t1343345870
+s1028932
+
+N/SLQTSOR/Overworld.mp3
+c000000004FE7861E000000000019A635
+t1340573214
+s1680949
+
+N/SLQTSOR/Quest complete.mp3
+c000000004FE786250000000000045783
+t1340573221
+s284547
+
+N/SLQTSOR/Reflect.mp3
+c000000004FE78634000000000010F82A
+t1340573236
+s1112106
+
+N/SLQTSOR/Resolve.mp3
+c000000004FF8A1A3000000000016B58E
+t1341694371
+s1488270
+
+N/SLQTSOR/Rise.mp3
+c000000004FE786300000000000187EB2
+t1340573232
+s1605298
+
+N/SLQTSOR/Robattle.mp3
+c000000004FEFA663000000000011A87E
+t1341105763
+s1157246
+
+N/SLQTSOR/Roverworld.mp3
+c000000004FF8A195000000000021487E
+t1341694357
+s2181246
+
+N/SLQTSOR/SettingsView.xib
+c0000000050D4D9B70000000000006F03
+t1356126647
+s28419
+
+N/SLQTSOR/Sneak mode.mp3
+c0000000050D63A040000000000185C69
+t1356216836
+s1596521
+
+N/SLQTSOR/Snow Planet.mp3
+c0000000050B44EFA0000000000282054
+t1353993978
+s2629716
+
+N/SLQTSOR/Stasis.mp3
+c000000004FE78D7000000000000D77D7
+t1340575088
+s882647
+
+N/SLQTSOR/Swoosh.wav
+c000000004FF51D380000000000016750
+t1341463864
+s91984
+
+N/SLQTSOR/Trajan's Plight.mp3
+c000000004FF8FAE00000000000105B6E
+t1341717216
+s1071982
+
+N/SLQTSOR/Water Planet.mp3
+c0000000050A317AE0000000000178344
+t1352865710
+s1540932
+
+N/SLQTSOR/Zel's Adventure Theme.mp3
+c000000004FE786090000000000195E5F
+t1340573193
+s1662559
+
+N/SLQTSOR/Zel's House.mp3
+c000000005050ACC400000000000E8BC2
+t1347464388
+s953282
+
+N/SLQTSOR/Zero Hour DC.mp3
+c000000004FF8FD390000000000218EB2
+t1341717817
+s2199218
+
+N/SLQTSOR/Zero Hour.mp3
+c000000004FF0E7A9000000000022CD10
+t1341188009
+s2280720
+
+N/SLQTSOR/allBlack.png
+c000000004BA1E1900000000000000354
+t1268900240
+s852
+
+N/SLQTSOR/appearingEmitter.pex
+c0000000050D54BE20000000000000673
+t1356155874
+s1651
+
+N/SLQTSOR/atlas.png
+c000000004BC6C8620000000000020FF1
+t1271318626
+s135153
+
+N/SLQTSOR/battle interface sheet.png
+c0000000050E215F90000000000000C86
+t1356994041
+s3206
+
+N/SLQTSOR/battleInterfaceCoordinates.plist
+c0000000050E21C510000000000000AF2
+t1356995665
+s2802
+
+N/SLQTSOR/battleInterfaceTexture.png
+c0000000050E21C4200000000000009DC
+t1356995650
+s2524
+
+N/SLQTSOR/battlescenepainted.png
+c0000000050DF5B140000000000052383
+t1356815124
+s336771
+
+N/SLQTSOR/battletestmap1.tmx
+c0000000050DF98930000000000009EF6
+t1356830867
+s40694
+
+N/SLQTSOR/bookAntiqua32.fnt
+c000000004B406DBF0000000000002CCE
+t1262513599
+s11470
+
+N/SLQTSOR/bookAntiqua32.png
+c000000004B406DC000000000000042E8
+t1262513600
+s17128
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Info.plist
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/PkgInfo
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/2.0.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/2048tileset.png
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Battle.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Character name .mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Chase.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Contemplate.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Credits.png
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/CreditsView.nib
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Cutscene.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Default.png
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Determined.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/End scene.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Escape Battle 101bpm.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Escape DC.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Escape.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Fightflight .mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/GameOver.png
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/HighScoreCell.nib
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/HighScoreView.nib
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Homeport.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Insomnaphoria.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/InstructionsView.nib
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Intensity.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Jungle?.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/LOL@annika'sbirthday.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Lucid.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/MainWindow.nib
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Night.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Noriko's Destiny.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Oppressed Town.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Over world 2.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Overworld.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Quest complete.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Reflect.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Resolve.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Rise.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Robattle.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Roverworld.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/SettingsView.nib
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Sneak mode.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Snow Planet.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Stasis.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Swoosh.wav
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Trajan's Plight.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Water Planet.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Zel's Adventure Theme.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Zel's House.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Zero Hour DC.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Zero Hour.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/allBlack.png
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/appearingEmitter.pex
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/atlas.png
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/battle interface sheet.png
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/battleInterfaceCoordinates.plist
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/battleInterfaceTexture.png
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/battlescenepainted.png
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/battletestmap1.tmx
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/bookAntiqua32.fnt
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/bookAntiqua32.png
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/coordinates.plist
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/defaultTexture.png
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/dist.plist
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/doorCoords.plist
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/doorOpen.caf
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/doorSlam.caf
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/dyingGhostEmitter.pex
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/eatfood.caf
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/edited2.tmx
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/emitter.pex
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/ending.png
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/fightsound.caf
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/fightsound.wav
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/franklin16.fnt
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/franklin16.png
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/gear.png
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/grabButton.png
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/guess.plist
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/guess.png
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/guiTouch.caf
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/healthbar.png
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/hitwall.caf
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/hurt.caf
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/icon.png
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/ingame.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/joypad.png
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/loseIntro.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/loseLoop.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/menuAtlas.png
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/menuCoords.plist
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/mutated.png
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/mutatedmap.tmx
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/newTileAtlas.png
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/nocollision.tmx
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/painting1.png
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/painting2.png
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/parchmentEmitter.pex
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/pop.caf
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/portalEmitter.pex
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/scream.caf
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/sliderTrack.png
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/sliderbg.png
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/slqtsor.tmx
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/spell.caf
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/spritesheet_doors.png
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/star.png
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/story.png
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/teleport.pex
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/test.caf
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/testmap1.tmx
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/testmap2.tmx
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/testmap3.tmx
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/testmap4.tmx
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/testmap5.tmx
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/testmap6.tmx
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/testmap7.tmx
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/testmap8.tmx
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/testmapcoll1.tmx
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/themeIntro.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/themeLoop.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/tilemap forest pencil.png
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/tilemapforest.png
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/tilesetforest.png
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/ui_button.png
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/ui_menu.png
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/ui_scrollbutton.png
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/voice.wav
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/winIntro.mp3
+t2
+s0
+
+N/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/winLoop.mp3
+t2
+s0
+
+N/SLQTSOR/coordinates.plist
+c000000004BC6C86600000000000044BD
+t1271318630
+s17597
+
+N/SLQTSOR/defaultTexture.png
+c000000004A173894000000000000148B
+t1243035796
+s5259
+
+N/SLQTSOR/dist.plist
+c000000004B38F41200000000000000E1
+t1262023698
+s225
+
+N/SLQTSOR/doorCoords.plist
+c000000004B5C71C90000000000003E84
+t1264349641
+s16004
+
+N/SLQTSOR/doorOpen.caf
+c000000004B38F412000000000001AC46
+t1262023698
+s109638
+
+N/SLQTSOR/doorSlam.caf
+c000000004B38F412000000000000F786
+t1262023698
+s63366
+
+N/SLQTSOR/dyingGhostEmitter.pex
+c0000000050D54CA30000000000000668
+t1356156067
+s1640
+
+N/SLQTSOR/eatfood.caf
+c000000004B38F41200000000000053D2
+t1262023698
+s21458
+
+N/SLQTSOR/edited2.tmx
+c0000000050D4EC6A00000000000A7F0A
+t1356131434
+s687882
+
+N/SLQTSOR/emitter.pex
+c000000004E85A2290000000000000E19
+t1317380649
+s3609
+
+N/SLQTSOR/ending.png
+c000000004B3F6501000000000002BBAB
+t1262445825
+s179115
+
+N/SLQTSOR/fightsound.caf
+c0000000050E3DC390000000000011000
+t1357110329
+s69632
+
+N/SLQTSOR/fightsound.wav
+c0000000050E3D4130000000000011470
+t1357108243
+s70768
+
+N/SLQTSOR/franklin16.fnt
+c000000004B38F4120000000000002C14
+t1262023698
+s11284
+
+N/SLQTSOR/franklin16.png
+c000000004B38F41200000000000018A1
+t1262023698
+s6305
+
+N/SLQTSOR/gear.png
+c000000004B814465000000000000087A
+t1266762853
+s2170
+
+N/SLQTSOR/grabButton.png
+c000000004B2B61310000000000000E05
+t1261134129
+s3589
+
+N/SLQTSOR/guess.plist
+c000000004FF91C1700000000000002FF
+t1341725719
+s767
+
+N/SLQTSOR/guess.png
+c000000004FF9302400000000000101FB
+t1341730852
+s66043
+
+N/SLQTSOR/guiTouch.caf
+c000000004B38F4120000000000002870
+t1262023698
+s10352
+
+N/SLQTSOR/healthbar.png
+c000000004B38F41200000000000000E7
+t1262023698
+s231
+
+N/SLQTSOR/hitwall.caf
+c000000004B38F41300000000000013A2
+t1262023699
+s5026
+
+N/SLQTSOR/hurt.caf
+c000000004B8AC79D000000000000340C
+t1267386269
+s13324
+
+N/SLQTSOR/icon.png
+c0000000050E1E3B90000000000001C51
+t1356981177
+s7249
+
+N/SLQTSOR/ingame.mp3
+c000000004B7AAB0400000000001E4B19
+t1266330372
+s1985305
+
+N/SLQTSOR/joypad.png
+c000000004A3B97670000000000000966
+t1245419367
+s2406
+
+N/SLQTSOR/loseIntro.mp3
+c000000004B586216000000000001BAFC
+t1264083478
+s113404
+
+N/SLQTSOR/loseLoop.mp3
+c000000004B5862160000000000048543
+t1264083478
+s296259
+
+N/SLQTSOR/menuAtlas.png
+c000000004BA1EA0A00000000000673C4
+t1268902410
+s422852
+
+N/SLQTSOR/menuCoords.plist
+c000000004BA1EA1000000000000017AD
+t1268902416
+s6061
+
+N/SLQTSOR/mutated.png
+c0000000050DFE46000000000000E1E22
+t1356850272
+s925218
+
+N/SLQTSOR/mutatedmap.tmx
+c0000000050DFED76000000000009C6A5
+t1356852598
+s640677
+
+N/SLQTSOR/newTileAtlas.png
+c000000004BC6C92F000000000009153C
+t1271318831
+s595260
+
+N/SLQTSOR/nocollision.tmx
+c0000000050D5040500000000000A7F1A
+t1356137477
+s687898
+
+N/SLQTSOR/painting1.png
+c0000000050DE590D000000000006DCB5
+t1356749069
+s449717
+
+N/SLQTSOR/painting2.png
+c0000000050DE592A0000000000058F11
+t1356749098
+s364305
+
+N/SLQTSOR/parchmentEmitter.pex
+c000000004B9E10F00000000000000668
+t1268650224
+s1640
+
+N/SLQTSOR/pop.caf
+c000000004B38F4120000000000001290
+t1262023698
+s4752
+
+N/SLQTSOR/portalEmitter.pex
+c000000004B9E10AE0000000000000669
+t1268650158
+s1641
+
+N/SLQTSOR/scream.caf
+c000000004B38F41300000000000336D0
+t1262023699
+s210640
+
+N/SLQTSOR/sliderTrack.png
+c000000004B38F41200000000000014A1
+t1262023698
+s5281
+
+N/SLQTSOR/sliderbg.png
+c000000004C27AE0C00000000000008E1
+t1277668876
+s2273
+
+N/SLQTSOR/slqtsor.tmx
+c0000000050E3C6D800000000000A7EFA
+t1357104856
+s687866
+
+N/SLQTSOR/spell.caf
+c000000004B38F4120000000000071FAA
+t1262023698
+s466858
+
+N/SLQTSOR/spritesheet_doors.png
+c000000004B98A9B60000000000010A76
+t1268296118
+s68214
+
+N/SLQTSOR/star.png
+c000000004BE651080000000000000E29
+t1273385224
+s3625
+
+N/SLQTSOR/story.png
+c000000004BE64FFA0000000000020139
+t1273384954
+s131385
+
+N/SLQTSOR/teleport.pex
+c0000000050D546EF0000000000000690
+t1356154607
+s1680
+
+N/SLQTSOR/test.caf
+c0000000050E3DAAD0000000000011000
+t1357109933
+s69632
+
+N/SLQTSOR/testmap1.tmx
+c0000000050DD234300000000000A7CA1
+t1356669763
+s687265
+
+N/SLQTSOR/testmap2.tmx
+c0000000050DD2BCA0000000000003EEB
+t1356671946
+s16107
+
+N/SLQTSOR/testmap3.tmx
+c0000000050DE5BC6000000000000172E
+t1356749766
+s5934
+
+N/SLQTSOR/testmap4.tmx
+c0000000050DE5C8500000000000042A4
+t1356749957
+s17060
+
+N/SLQTSOR/testmap5.tmx
+c0000000050DEA7C100000000000102A4
+t1356769217
+s66212
+
+N/SLQTSOR/testmap6.tmx
+c0000000050DEA82500000000000102A4
+t1356769317
+s66212
+
+N/SLQTSOR/testmap7.tmx
+c0000000050DF6C4D000000000009C6B5
+t1356819533
+s640693
+
+N/SLQTSOR/testmap8.tmx
+c0000000050DF7B51000000000003EABF
+t1356823377
+s256703
+
+N/SLQTSOR/testmapcoll1.tmx
+c0000000050DFE07F0000000000009EE8
+t1356849279
+s40680
+
+N/SLQTSOR/themeIntro.mp3
+c000000004B53918900000000001A4CC2
+t1263767945
+s1723586
+
+N/SLQTSOR/themeLoop.mp3
+c000000004B543872000000000013945C
+t1263810674
+s1283164
+
+N/SLQTSOR/tilemap forest pencil.png
+c0000000050DCE771000000000008EBEE
+t1356654449
+s584686
+
+N/SLQTSOR/tilemapforest.png
+c0000000050DCE22B000000000006F05C
+t1356653099
+s454748
+
+N/SLQTSOR/tilesetforest.png
+c0000000050DF624200000000001CD860
+t1356816962
+s1890400
+
+N/SLQTSOR/ui_button.png
+c000000004B38F4120000000000001B8D
+t1262023698
+s7053
+
+N/SLQTSOR/ui_menu.png
+c000000004B38F412000000000000CFF6
+t1262023698
+s53238
+
+N/SLQTSOR/ui_scrollbutton.png
+c000000004B38F4120000000000000649
+t1262023698
+s1609
+
+N/SLQTSOR/voice.wav
+c000000004B795158000000000004ACDA
+t1266241880
+s306394
+
+N/SLQTSOR/winIntro.mp3
+c000000004B57840E0000000000087158
+t1264026638
+s553304
+
+N/SLQTSOR/winLoop.mp3
+c000000004B5783FA000000000004874E
+t1264026618
+s296782
+
+NZel's Adventure-Info.plist
+c000000004FFA48F50000000000000572
+t1341802741
+s1394
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies378872117#378872117#0(338"[WARN]Warning: Multiple build commands for output file /SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Zel's Adventure Theme.mp3[WARN]Warning: Multiple build commands for output file /SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Zero Hour.mp3[BEROR]error: There is no SDK with the name or path 'iphoneos3.1.2'3(22@134"Warning: Multiple build commands for output file /SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Zel's Adventure Theme.mp3378872117#18446744073709551615#0#0(1@0"0(22@122"Warning: Multiple build commands for output file /SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/Zero Hour.mp3378872117#18446744073709551615#0#0(1@0"0(4@60"error: There is no SDK with the name or path 'iphoneos3.1.2'378872117#18446744073709551615#0#0(1@0"0(0#1#0"17255177984#0"0#
+
+CCompileXIB /SLQTSOR/Classes/CreditsView.xib
+r0
+
+CCompileXIB /SLQTSOR/Classes/InstructionsView.xib
+r0
+
+CCompileXIB /SLQTSOR/HighScoreCell.xib
+r0
+
+CCompileXIB /SLQTSOR/HighScoreView.xib
+r0
+
+CCompileXIB /SLQTSOR/MainWindow.xib
+r0
+
+CCompileXIB /SLQTSOR/SettingsView.xib
+r0
+
+CCopyPlistFile "/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/battleInterfaceCoordinates.plist" battleInterfaceCoordinates.plist
+r0
+
+CCopyPlistFile "/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/coordinates.plist" coordinates.plist
+r0
+
+CCopyPlistFile "/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/dist.plist" dist.plist
+r0
+
+CCopyPlistFile "/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/doorCoords.plist" doorCoords.plist
+r0
+
+CCopyPlistFile "/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/guess.plist" guess.plist
+r0
+
+CCopyPlistFile "/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Resources/menuCoords.plist" menuCoords.plist
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/2.0.mp3" 2.0.mp3
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/2048tileset.png" 2048tileset.png
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/Battle.mp3" Battle.mp3
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/Character name .mp3" "Character name .mp3"
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/Chase.mp3" Chase.mp3
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/Contemplate.mp3" Contemplate.mp3
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/Credits.png" Credits.png
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/Cutscene.mp3" Cutscene.mp3
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/Default.png" Default.png
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/Determined.mp3" Determined.mp3
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/End scene.mp3" "End scene.mp3"
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/Escape Battle 101bpm.mp3" "Escape Battle 101bpm.mp3"
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/Escape DC.mp3" "Escape DC.mp3"
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/Escape.mp3" Escape.mp3
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/Fightflight .mp3" "Fightflight .mp3"
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/GameOver.png" GameOver.png
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/Homeport.mp3" Homeport.mp3
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/Insomnaphoria.mp3" Insomnaphoria.mp3
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/Intensity.mp3" Intensity.mp3
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/Jungle?.mp3" Jungle?.mp3
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/LOL@annika'sbirthday.mp3" LOL@annika'sbirthday.mp3
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/Lucid.mp3" Lucid.mp3
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/Night.mp3" Night.mp3
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/Noriko's Destiny.mp3" "Noriko's Destiny.mp3"
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/Oppressed Town.mp3" "Oppressed Town.mp3"
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/Over world 2.mp3" "Over world 2.mp3"
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/Overworld.mp3" Overworld.mp3
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/Quest complete.mp3" "Quest complete.mp3"
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/Reflect.mp3" Reflect.mp3
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/Resolve.mp3" Resolve.mp3
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/Rise.mp3" Rise.mp3
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/Robattle.mp3" Robattle.mp3
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/Roverworld.mp3" Roverworld.mp3
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/Sneak mode.mp3" "Sneak mode.mp3"
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/Snow Planet.mp3" "Snow Planet.mp3"
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/Stasis.mp3" Stasis.mp3
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/Swoosh.wav" Swoosh.wav
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/Trajan's Plight.mp3" "Trajan's Plight.mp3"
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/Water Planet.mp3" "Water Planet.mp3"
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/Zel's Adventure Theme.mp3" "Zel's Adventure Theme.mp3"
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/Zel's House.mp3" "Zel's House.mp3"
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/Zero Hour DC.mp3" "Zero Hour DC.mp3"
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/Zero Hour.mp3" "Zero Hour.mp3"
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/allBlack.png" allBlack.png
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/appearingEmitter.pex" appearingEmitter.pex
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/atlas.png" atlas.png
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/battle interface sheet.png" "battle interface sheet.png"
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/battleInterfaceTexture.png" battleInterfaceTexture.png
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/battlescenepainted.png" battlescenepainted.png
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/battletestmap1.tmx" battletestmap1.tmx
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/bookAntiqua32.fnt" bookAntiqua32.fnt
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/bookAntiqua32.png" bookAntiqua32.png
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/defaultTexture.png" defaultTexture.png
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/doorOpen.caf" doorOpen.caf
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/doorSlam.caf" doorSlam.caf
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/dyingGhostEmitter.pex" dyingGhostEmitter.pex
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/eatfood.caf" eatfood.caf
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/edited2.tmx" edited2.tmx
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/emitter.pex" emitter.pex
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/ending.png" ending.png
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/fightsound.caf" fightsound.caf
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/fightsound.wav" fightsound.wav
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/franklin16.fnt" franklin16.fnt
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/franklin16.png" franklin16.png
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/gear.png" gear.png
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/grabButton.png" grabButton.png
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/guess.png" guess.png
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/guiTouch.caf" guiTouch.caf
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/healthbar.png" healthbar.png
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/hitwall.caf" hitwall.caf
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/hurt.caf" hurt.caf
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/icon.png" icon.png
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/ingame.mp3" ingame.mp3
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/joypad.png" joypad.png
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/loseIntro.mp3" loseIntro.mp3
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/loseLoop.mp3" loseLoop.mp3
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/menuAtlas.png" menuAtlas.png
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/mutated.png" mutated.png
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/mutatedmap.tmx" mutatedmap.tmx
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/newTileAtlas.png" newTileAtlas.png
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/nocollision.tmx" nocollision.tmx
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/painting1.png" painting1.png
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/painting2.png" painting2.png
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/parchmentEmitter.pex" parchmentEmitter.pex
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/pop.caf" pop.caf
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/portalEmitter.pex" portalEmitter.pex
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/scream.caf" scream.caf
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/sliderTrack.png" sliderTrack.png
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/sliderbg.png" sliderbg.png
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/slqtsor.tmx" slqtsor.tmx
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/spell.caf" spell.caf
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/spritesheet_doors.png" spritesheet_doors.png
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/star.png" star.png
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/story.png" story.png
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/teleport.pex" teleport.pex
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/test.caf" test.caf
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/testmap1.tmx" testmap1.tmx
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/testmap2.tmx" testmap2.tmx
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/testmap3.tmx" testmap3.tmx
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/testmap4.tmx" testmap4.tmx
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/testmap5.tmx" testmap5.tmx
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/testmap6.tmx" testmap6.tmx
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/testmap7.tmx" testmap7.tmx
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/testmap8.tmx" testmap8.tmx
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/testmapcoll1.tmx" testmapcoll1.tmx
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/themeIntro.mp3" themeIntro.mp3
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/themeLoop.mp3" themeLoop.mp3
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/tilemap forest pencil.png" "tilemap forest pencil.png"
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/tilemapforest.png" tilemapforest.png
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/tilesetforest.png" tilesetforest.png
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/ui_button.png" ui_button.png
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/ui_menu.png" ui_menu.png
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/ui_scrollbutton.png" ui_scrollbutton.png
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/voice.wav" voice.wav
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/winIntro.mp3" winIntro.mp3
+r0
+
+CCpResource "build/Debug/Zel's Adventure.app/Contents/Resources/winLoop.mp3" winLoop.mp3
+r0
+
+CProcessInfoPlistFile "/SLQTSOR/build/Debug/Zel's Adventure.app/Contents/Info.plist" "Zel's Adventure-Info.plist"
+r0
+
+CTouch "/SLQTSOR/build/Debug/Zel's Adventure.app"
+r0
+
